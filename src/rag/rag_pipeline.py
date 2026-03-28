@@ -1,7 +1,11 @@
 import pickle
 import numpy as np
 from sentence_transformers import SentenceTransformer
+import os
+from dotenv import load_dotenv
 from groq import Groq
+
+
 
 # Load models and data only once
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
@@ -11,8 +15,9 @@ embeddings = np.load("data/vector_store/cleaned_embeddings.npy")
 with open("data/vector_store/cleaned_metadata.pkl", "rb") as f:
     metadata = pickle.load(f)
 
-# Put your Groq key here
-client = Groq(api_key="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")
+load_dotenv()
+
+client = Groq(api_key=os.getenv("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"))
 
 
 def cosine_similarity(query_embedding, embeddings):

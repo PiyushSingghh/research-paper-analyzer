@@ -2,6 +2,9 @@ import fitz
 import numpy as np
 import re
 from sentence_transformers import SentenceTransformer
+import os
+from dotenv import load_dotenv
+from groq import Groq
 
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
@@ -158,9 +161,12 @@ def retrieve_from_uploaded_pdf(query, chunks, embeddings, top_k=3):
 
     return top_chunks, sorted(set(source_pages))
 
-from groq import Groq
 
-client = Groq(api_key="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")
+
+load_dotenv()
+
+client = Groq(api_key=os.getenv("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"))
+
 
 def generate_answer_from_uploaded_pdf(query, top_chunks):
     if not top_chunks:
