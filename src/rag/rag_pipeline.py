@@ -17,7 +17,7 @@ with open("data/vector_store/cleaned_metadata.pkl", "rb") as f:
 
 load_dotenv()
 
-client = Groq(api_key=os.getenv("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"))
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 
 def cosine_similarity(query_embedding, embeddings):

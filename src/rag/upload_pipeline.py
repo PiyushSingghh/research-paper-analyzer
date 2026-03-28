@@ -165,7 +165,7 @@ def retrieve_from_uploaded_pdf(query, chunks, embeddings, top_k=3):
 
 load_dotenv()
 
-client = Groq(api_key=os.getenv("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"))
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 
 def generate_answer_from_uploaded_pdf(query, top_chunks):
