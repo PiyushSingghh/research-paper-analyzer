@@ -6,13 +6,15 @@ from dotenv import load_dotenv
 from groq import Groq
 
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))
 
 # Load models and data only once
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
-embeddings = np.load("data/vector_store/cleaned_embeddings.npy")
+embeddings = np.load(os.path.join(PROJECT_ROOT, "data", "vector_store", "cleaned_embeddings.npy"))
 
-with open("data/vector_store/cleaned_metadata.pkl", "rb") as f:
+with open(os.path.join(PROJECT_ROOT, "data", "vector_store", "cleaned_metadata.pkl"), "rb") as f:
     metadata = pickle.load(f)
 
 load_dotenv()
@@ -113,7 +115,7 @@ Return:
 import pandas as pd
 
 def get_available_papers():
-    df = pd.read_csv("data/raw/metadata/arxiv_transformer_papers.csv")
+    df = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "raw", "metadata", "arxiv_transformer_papers.csv"))
     papers = []
 
     for _, row in df.iterrows():

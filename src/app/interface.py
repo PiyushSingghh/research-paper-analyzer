@@ -2,7 +2,10 @@ import sys
 import os
 import tempfile
 
-sys.path.append(os.path.abspath("."))
+# Get the project root directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, "..", ".."))
+sys.path.append(project_root)
 
 import streamlit as st
 from src.rag.rag_pipeline import retrieve_chunks, generate_answer, get_available_papers
