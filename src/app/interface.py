@@ -18,7 +18,7 @@ from src.rag.upload_pipeline import (
 
 st.set_page_config(page_title="Research Paper Analyzer", layout="wide")
 
-st.title("📘 Research Paper Analyzer")
+st.title(" Research Paper Analyzer")
 st.write("Analyze built-in research papers or upload your own PDF.")
 
 # -------------------------
