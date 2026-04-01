@@ -165,8 +165,16 @@ def retrieve_from_uploaded_pdf(query, chunks, embeddings, top_k=3):
 
 load_dotenv()
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+def get_groq_client():
+    try:
+        import streamlit as st
+        api_key = st.secrets["GROQ_API_KEY"]
+    except:
+        api_key = os.getenv("GROQ_API_KEY")
 
+    return Groq(api_key=api_key)
+
+client = get_groq_client()
 
 def generate_answer_from_uploaded_pdf(query, top_chunks):
     if not top_chunks:

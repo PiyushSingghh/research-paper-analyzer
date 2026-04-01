@@ -17,7 +17,16 @@ with open("data/vector_store/cleaned_metadata.pkl", "rb") as f:
 
 load_dotenv()
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+def get_groq_client():
+    try:
+        import streamlit as st
+        api_key = st.secrets["GROQ_API_KEY"]
+    except:
+        api_key = os.getenv("GROQ_API_KEY")
+
+    return Groq(api_key=api_key)
+
+client = get_groq_client()
 
 
 def cosine_similarity(query_embedding, embeddings):
