@@ -3,7 +3,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from groq import Groq
 
-client = Groq(api_key="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")
+client = Groq(api_key="Your_api_key")
 
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
